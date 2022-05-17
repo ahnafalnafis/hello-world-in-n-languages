@@ -1,0 +1,66 @@
+#!/bin/sh
+
+COLOR="\033[01;34m"
+RESET="\033[00m"
+
+# Initialize
+if [[ -f ./bin ]];then
+    rm -rf ./bin
+    mkdir ./bin
+fi
+
+# Assembly Linux x86_64.
+nasm -f elf64 src/hello-world.asm -o bin/hello-world.asm.o
+ld bin/hello-world.asm.o -o bin/hello-world.asm.out
+echo -e "$COLOR\"Hello world!\" from Assembly Linux x86_64:$RESET"
+./bin/hello-world.asm.out
+
+# C
+gcc src/hello-world.c -o bin/hello-world.c.out
+echo -e "$COLOR\"Hello world!\" from C:$RESET"
+./bin/hello-world.c.out
+
+# C++
+g++ src/hello-world.cpp -o bin/hello-world.cpp.out
+echo -e "$COLOR\"Hello world!\" from C++:$RESET"
+./bin/hello-world.cpp.out
+
+# Go
+echo -e "$COLOR\"Hello world!\" from Go:$RESET"
+go run src/hello-world.go
+
+# Java
+javac src/hello-world.java
+mv src/HelloWorld.class bin
+echo -e "$COLOR\"Hello world!\" from Java:$RESET"
+cd bin
+java HelloWorld
+cd ..
+
+# JavaScript
+echo -e "$COLOR\"Hello world!\" from JavaScript:$RESET"
+node src/hello-world.js
+
+# Lua
+echo -e "$COLOR\"Hello world!\" from Lua:$RESET"
+lua src/hello-world.lua
+
+# Python
+echo -e "$COLOR\"Hello world!\" from Python:$RESET"
+python src/hello-world.py
+
+# Ruby
+echo -e "$COLOR\"Hello world!\" from Ruby:$RESET"
+ruby src/hello-world.rb
+
+# Shell script
+chmod +x src/hello-world.sh
+echo -e "$COLOR\"Hello world!\" from Shell script:$RESET"
+./src/hello-world.sh
+
+# VimScript
+echo -e "$COLOR\"Hello world!\" from VimScript:$RESET"
+vim -u src/hello-world.vim --noplugins +q
+
+# Finalize
+rm -rf bin
