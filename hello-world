@@ -1,14 +1,12 @@
 #!/bin/sh
 
-# Colors
+# Output colors
 COLOR="\033[01;34m"
 RESET="\033[00m"
 
 # Initialize
-# if [[ -f ./bin ]];then
 rm -rf ./bin
 mkdir ./bin
-# fi
 
 # Assembly Linux x86_64.
 nasm -f elf64 src/hello-world.asm -o bin/hello-world.asm.o
